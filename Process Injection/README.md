@@ -10,6 +10,8 @@ When I first started, I knew in a very broad sense of how Windows APIs work, but
 
 Immediately, I found that there were two main libraries that you can use for this: **ntdll.dll** and **kernel32.dll**. The difference between the two is that **ntdll.dll** is a lower-level library, and it contains something called a "syscall"; this makes ntdll very desirable for threat actors, and because of that, common EDR and AV tools monitor this library using API hooks (which we're going to explore whenever I make a writeup on direct and indirect syscalls). Meanwhile, **kernel32.dll** is essentially a wrapper for ntdll.dll, and makes it nice and easy to use Winapi. The library that I used for this rudimentary project was kernel32.dll because, as I said previously, it makes interacting with Windows APIs much less aggravating. 
 
+I also want to mention this beautiful [website](https://malapi.io/) because it has helped a ton in both my malware analysis and malware development journey for understanding malware at a deeper level.
+
 ## Process Injection
 
 In order to inject into another process using Windows APIs, you need to follow this generalized workflow: 
