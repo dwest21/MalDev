@@ -38,3 +38,14 @@ This process works by writing "position-independent code". We need to do this be
 In order to get the assembly from the C code, we have to manipulate the compilation process. The compilation workflow is as follows (shown in the research article): 
 
 ![image](https://github.com/user-attachments/assets/6c3e2f88-b8e7-4178-8171-43f17c1975d8)
+
+After looking at this diagram, we see that we just need to skip the linker, as this would give us the assembly code. So that's exactly what we do. Now, it depends on what compiler you're using, however, I used CL because it was readily available to me within Visual Studio. The command line provided is ```cl.exe /c /FA /GS- "C:\PATH\TO\C_PROGRAM.c"```. Now that we have assembly, we have to make some modifications to it by removing any external references, and making sure there are no syntax errors provided. This includes aligning the RSP register to 64-bits, as well as various other small assembly things. Provided down below is how the process works for moving from assembly into a binary:
+
+![image](https://github.com/user-attachments/assets/e15f91da-7dee-4624-b6a2-87745b7c4a46)
+
+
+I used MASM for this, as again, it was readily available within Visual Studio. This whole process took me about a full day to finally get the shellcode to compile from assembly (ugh). The final step is to put the binary into a hex editor like HxD and copy the hex values from the .text/.code section (as those are the actual executable machine instructions), and that would be your shellcode!
+
+## Takeaways
+
+I learned a lot through this process, including how to interact with Windows APIs and a deepeer understanding of the compilation process. This information is invaluable since Windows is the Operating System with the highest amount of attacks (followed by Android), so gearing myself into the **red team** mindset allowed me a deeper understanding of how to handle situations from a *blue team* perspective and gain more knowledge for future incidents and investigations.  This project also lead me down a rabbit hole by showing me lots of neat things you can do with Windows APIs, and I can't wait to show more of what I learn as I go along!
