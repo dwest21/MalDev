@@ -72,6 +72,9 @@ Finally, post-execution shows that a new instance of notepad has spawned, which 
 ## References
 
 •	https://alice.climent-pommeret.red/posts/a-syscall-journey-in-the-windows-kernel/
+
 •	https://www.crow.rip/crows-nest/mal/dev/inject/syscalls/direct-syscalls
+
 •	https://redops.at/en/blog/direct-syscalls-vs-indirect-syscalls
+
 •	https://www.giac.org/paper/grem/2593/ioc-indicators-compromise-malware-forensics/125039 (Pages 15-17, specifically)
