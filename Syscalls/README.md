@@ -1,4 +1,4 @@
-A small note: Some of the screenshots I used in my explanation come from different articles and papers. I will include references at the end to make sure I give credit to the all pages. 
+A small note: Some of the screenshots I used in my explanation come from different articles and papers. I will include references at the end to give credit where it is due. 
 
 # Defense Evasion 101: Direct and Indirect Syscalls
 
