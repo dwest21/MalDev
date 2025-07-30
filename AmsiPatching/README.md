@@ -14,14 +14,14 @@ It is necessary to point out that I will be utilizing AmsiInitialize() in this P
 
 1. Use AmsiIntialize() to get the Amsi context necessary for the rest of the technique
 2. Retrieve the CAmsiAntimalware object
-   2a. This object is found at an offset of 16 bytes from the base address of the Amsi context for 64-bit architectures, or an offset of 8 bytes for 32-bit architectures.
+    2a. This object is found at an offset of 16 bytes from the base address of the Amsi context for 64-bit architectures, or an offset of 8 bytes for 32-bit architectures.
 3. Retrieve the list of Antimalware providers
-   3a. This list is located at an offset of 64 bytes from the CAmsiAntimalware object for 64-bit architectures, or an offset of 36 bytes for 32-bit architectures.
+    3a. This list is located at an offset of 64 bytes from the CAmsiAntimalware object for 64-bit architectures, or an offset of 36 bytes for 32-bit architectures.
 4. Retrieve each provider's Virtual Table (Vtable) to be able to grab the function we are looking for
-   4a. A VTable is an implementation of virtual functions that are called at runtime. This is how object-oriented languages like C++ can achieve polymorphism.
-   4b. The Vtable reference can be found within each Antimalware provider's base address
+    4a. A VTable is an implementation of virtual functions that are called at runtime. This is how object-oriented languages like C++ can achieve polymorphism.
+    4b. The Vtable reference can be found within each Antimalware provider's base address
 5. Retrieve the scanning function from the Vtable
-   5a.  This function is found at an offset of 24 bytes from the VTable base address for 64-bit architectures, or an offset of 12 bytes for 32-bit architectures
+    5a.  This function is found at an offset of 24 bytes from the VTable base address for 64-bit architectures, or an offset of 12 bytes for 32-bit architectures
 6. Patch the functions as necessary
 
 So with all of that out of the way, let's move onto the code. 
