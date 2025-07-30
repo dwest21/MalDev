@@ -13,16 +13,26 @@ This workflow makes it especially desirable for attackers to pursue because if y
 It is necessary to point out that I will be utilizing AmsiInitialize() in this PoC because it returns the AmsiContext which I will be able to get the objects and arrays that I need. Most of the research for this comes from a Black Hat 2022 Asia conference (linked [here](https://i.blackhat.com/Asia-22/Friday-Materials/AS-22-Korkos-AMSI-and-Bypass.pdf?_gl=1*1c4zhid*_gcl_au*MTgyMDgxMjc1OC4xNzUzNzM2MDIx*_ga*NTY5ODg5ODIxLjE3NTM3MzYwMjE.*_ga_K4JK67TFYV*czE3NTM4ODM5MzYkbzIkZzAkdDE3NTM4ODM5MzYkajYwJGwwJGgw&_ga=2.226094554.1561298366.1753883936-569889821.1753736021)). The general outline of this process goes like this:
 
 1. Use AmsiIntialize() to get the Amsi context necessary for the rest of the technique
+
 2. Retrieve the CAmsiAntimalware object
+
    2a. This object is found at an offset of 16 bytes from the base address of the Amsi context for 64-bit architectures, or an offset of 8 bytes for 32-bit architectures.
-4. Retrieve the list of Antimalware providers
-    3a. This list is located at an offset of 64 bytes from the CAmsiAntimalware object for 64-bit architectures, or an offset of 36 bytes for 32-bit architectures.
-5. Retrieve each provider's Virtual Table (Vtable) to be able to grab the function we are looking for
-    4a. A VTable is an implementation of virtual functions that are called at runtime. This is how object-oriented languages like C++ can achieve polymorphism.
-    4b. The Vtable reference can be found within each Antimalware provider's base address
-6. Retrieve the scanning function from the Vtable
-    5a.  This function is found at an offset of 24 bytes from the VTable base address for 64-bit architectures, or an offset of 12 bytes for 32-bit architectures
-7. Patch the functions as necessary
+
+3. Retrieve the list of Antimalware providers
+
+   3a. This list is located at an offset of 64 bytes from the CAmsiAntimalware object for 64-bit architectures, or an offset of 36 bytes for 32-bit architectures.
+
+4. Retrieve each provider's Virtual Table (Vtable) to be able to grab the function we are looking for
+
+   4a. A VTable is an implementation of virtual functions that are called at runtime. This is how object-oriented languages like C++ can achieve polymorphism.
+
+   4b. The Vtable reference can be found within each Antimalware provider's base address
+
+5. Retrieve the scanning function from the Vtable
+
+   5a.  This function is found at an offset of 24 bytes from the VTable base address for 64-bit architectures, or an offset of 12 bytes for 32-bit architectures
+
+6. Patch the functions as necessary
 
 So with all of that out of the way, let's move onto the code. 
 
