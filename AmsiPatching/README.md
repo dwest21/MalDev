@@ -14,7 +14,6 @@ It is necessary to point out that I will be utilizing AmsiInitialize() in this P
 
 1. Use AmsiIntialize() to get the Amsi context necessary for the rest of the technique
 2. Retrieve the CAmsiAntimalware object
-
    2a. This object is found at an offset of 16 bytes from the base address of the Amsi context for 64-bit architectures, or an offset of 8 bytes for 32-bit architectures.
 4. Retrieve the list of Antimalware providers
     3a. This list is located at an offset of 64 bytes from the CAmsiAntimalware object for 64-bit architectures, or an offset of 36 bytes for 32-bit architectures.
