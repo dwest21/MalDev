@@ -21,7 +21,7 @@ The DLL that we are going to inject is a simple DLL (code provided in this repos
 
 The executable is setup to read the DLL path and the process name in from the command line parameters. Passing those in and you get met with a series of prompts to prevent the script from running too fast (and to allow for debugging). 
 
-!(image)["https://github.com/user-attachments/assets/a2633150-6164-4888-b02f-bb14c0cc361b"]
+!(image)(https://github.com/user-attachments/assets/a2633150-6164-4888-b02f-bb14c0cc361b)
 
 You can see that from x64Dbg's output, we have successfully allocated space within the target process. The memory space does not have any content within it yet because we have decided to place a breakpoint after allocation, again, to allow for debugging and proving that the code does what we want it to do. 
 
